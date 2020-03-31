@@ -133,7 +133,7 @@ class Game extends React.Component {
         const moves = history.map((step, move) => {
             const description = move ? "Goto move #" + move : "Goto game start";
             return (
-                <li key={move}>
+                <li key={move} className={(move === this.state.stepNumber ? 'bold' : '')}>
                     <button onClick={() => this.jumpTo(move)}>{description} {step.move} </button>
                 </li>
             );
