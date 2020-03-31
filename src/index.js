@@ -24,7 +24,7 @@ function calculateWinner(squares) {
 
 function Square(props) {
     return (
-        <button className="square" onClick={props.onClick}>
+        <button className="square" onClick={props.onClick} x-custom={props.customAttr}>
             {props.value}
         </button>
     );
@@ -36,27 +36,32 @@ class Board extends React.Component {
         return <Square
             value={this.props.squares[i]}
             onClick={() => this.props.onClick(i)}
+            customAttr={i}
         />;
     }
 
+    renderRow(rowNum) {
+        var squares = []
+        for (var i = 0; i < 3; i++) {
+            squares.push(this.renderSquare(rowNum * 3 + i));
+        }
+        return squares;
+    }
 
     render() {
+
+
+
         return (
             <div>
                 <div className="board-row">
-                    {this.renderSquare(0)}
-                    {this.renderSquare(1)}
-                    {this.renderSquare(2)}
+                    {this.renderRow(0)}
                 </div>
                 <div className="board-row">
-                    {this.renderSquare(3)}
-                    {this.renderSquare(4)}
-                    {this.renderSquare(5)}
+                    {this.renderRow(1)}
                 </div>
                 <div className="board-row">
-                    {this.renderSquare(6)}
-                    {this.renderSquare(7)}
-                    {this.renderSquare(8)}
+                    {this.renderRow(2)}
                 </div>
             </div>
         );
